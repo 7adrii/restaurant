@@ -54,3 +54,11 @@ foreach (Producto producto in carta)
     }
     
 }
+
+Producto producto1 = new Bebida("Agua", 2m, false);
+Producto producto2 = new Postre("Flan", 4m, 300, true);
+Producto producto3 = new Entrante("Nachos", 7m, 3, false);
+
+producto1.MostrarDetalles();
+producto2.MostrarDetalles();
+producto3.MostrarDetalles();
