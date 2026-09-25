@@ -32,7 +32,10 @@ List<Producto> carta = new List<Producto>
 
 Console.WriteLine("====CARTA====");
 
+int numeracion = 1;
+
 foreach (Producto producto in carta)
 {
-    Console.WriteLine($"{producto.Nombre} - {producto.Precio:C}");
+    Console.WriteLine($"{numeracion}. {producto.Nombre} - {producto.Precio:C}");
+    numeracion++;
 }
