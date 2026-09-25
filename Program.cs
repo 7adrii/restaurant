@@ -39,3 +39,18 @@ foreach (Producto producto in carta)
     Console.WriteLine($"{numeracion}. {producto.Nombre} - {producto.Precio:C}");
     numeracion++;
 }
+
+
+Console.WriteLine("====BEBIDAS====");
+
+int numeracion2 = 1;
+
+foreach (Producto producto in carta)
+{
+    if (producto is Bebida)
+    {
+        Console.WriteLine($"{numeracion2}. {producto.Nombre} - {producto.Precio:C}");
+        numeracion++;
+    }
+    
+}
