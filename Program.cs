@@ -16,3 +16,23 @@ Entrante ensaladilla = new Entrante("Ensaladilla Rusa", 13, 1, false);
 bravas.MostrarDetalles();
 nachos.MostrarDetalles();
 ensaladilla.MostrarDetalles();
+
+
+List<Producto> carta = new List<Producto>
+{
+    new Entrante("Patatas Bravas", 6m, 2, false), 
+    new Entrante("Nachos", 8m, 3, false), 
+    new PlatoPrincipal("Pizza", 11m, "Tomate, Queso, Oregano"), 
+    new PlatoPrincipal("Migas", 12.50m, "Migas, Torreznos, Huevos"), 
+    new Postre("Tarta de queso", 6m, 400, false), 
+    new Postre("Contesa", 5m, 200, false), 
+    new Bebida("CocaCola", 2.50m, false), 
+    new Bebida("Pacharan con hielo", 4m, true)
+};
+
+Console.WriteLine("====CARTA====");
+
+foreach (Producto producto in carta)
+{
+    Console.WriteLine($"{producto.Nombre} - {producto.Precio:C}");
+}
