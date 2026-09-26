@@ -62,3 +62,16 @@ Producto producto3 = new Entrante("Nachos", 7m, 3, false);
 producto1.MostrarDetalles();
 producto2.MostrarDetalles();
 producto3.MostrarDetalles();
+
+Console.WriteLine("=====================");
+Console.Write("¿Que producto quieres?");
+string? entrada = Console.ReadLine();
+
+if (!int.TryParse(entrada, out int seleccion))
+{
+    Console.WriteLine("Debes introducir un numero.");
+} else
+{
+    Producto elegido = carta[seleccion -1];
+    Console.WriteLine($"Has elegido: {elegido.Nombre} - {elegido.Precio:C}");
+}
