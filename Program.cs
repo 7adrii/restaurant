@@ -97,3 +97,28 @@ if(encontrado != null)
 {
     Console.WriteLine("No se ha encontrado el producto.");
 }
+
+Console.Write("Precio maximo: ");
+if(!decimal.TryParse(Console.ReadLine(), out decimal precioMaximo))
+{
+    Console.WriteLine("Debes introducir un precio valido");
+} else
+{
+    Console.WriteLine($"Prodcutos hasta {precioMaximo:C}");
+
+    bool hayProductos = false;
+
+    foreach(Producto producto in carta)
+    {
+        if (producto.Precio <= precioMaximo)
+        {
+            Console.WriteLine($"{producto.Nombre} - {producto.Precio:C}");
+            hayProductos = true;
+        }
+    }
+
+    if(!hayProductos)
+    {
+        Console.WriteLine("No hay ningun producto con ese precio o inferior.");
+    }
+}
