@@ -75,3 +75,25 @@ if (!int.TryParse(entrada, out int seleccion))
     Producto elegido = carta[seleccion -1];
     Console.WriteLine($"Has elegido: {elegido.Nombre} - {elegido.Precio:C}");
 }
+
+Console.Write("Pon el numero del producto: ");
+string busqueda = Console.ReadLine();
+
+Producto encontrado = null;
+
+foreach(Producto producto in carta)
+{
+    if(string.Equals(producto.Nombre, busqueda, StringComparison.OrdinalIgnoreCase))
+    {
+        encontrado = producto;
+        break;
+    }
+}
+
+if(encontrado != null)
+{
+    Console.WriteLine($"Producto encontrado: {encontrado.Nombre} - {encontrado.Precio:C}");
+} else
+{
+    Console.WriteLine("No se ha encontrado el producto.");
+}
