@@ -122,3 +122,14 @@ if(!decimal.TryParse(Console.ReadLine(), out decimal precioMaximo))
         Console.WriteLine("No hay ningun producto con ese precio o inferior.");
     }
 }
+
+Producto masCaro = carta[0];
+foreach(Producto producto in carta)
+{
+    if(producto.Precio > masCaro.Precio)
+    {
+        masCaro = producto;
+    }
+}
+
+Console.WriteLine($"El producto mas caro es: {masCaro.Nombre} - {masCaro.Precio}");
