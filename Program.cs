@@ -65,85 +65,94 @@ producto2.MostrarDetalles();
 producto3.MostrarDetalles();
 
 // Ejercicio 7: Seleccionar producto.
-Console.WriteLine("=====================");
-Console.Write("¿Que producto quieres?");
-string? entrada = Console.ReadLine();
+static void ElegirProducto(List<Producto> carta) {
+    Console.WriteLine("=====================");
+    Console.Write("¿Que producto quieres?");
+    string? entrada = Console.ReadLine();
 
-if (!int.TryParse(entrada, out int seleccion))
-{
-    Console.WriteLine("Debes introducir un numero.");
-}
-// Ejercicio 8: Validar la seleccion.
-else if (seleccion < 1 || seleccion > carta.Count)
-{
-    Console.WriteLine("Ese producto no existe.");
-}
-else
-{
-    Producto elegido = carta[seleccion - 1];
-    Console.WriteLine($"Has elegido: {elegido.Nombre} - {elegido.Precio:C}");
+    if (!int.TryParse(entrada, out int seleccion))
+    {
+        Console.WriteLine("Debes introducir un numero.");
+    }
+    // Ejercicio 8: Validar la seleccion.
+    else if (seleccion < 1 || seleccion > carta.Count)
+    {
+        Console.WriteLine("Ese producto no existe.");
+    }
+    else
+    {
+        Producto elegido = carta[seleccion - 1];
+        Console.WriteLine($"Has elegido: {elegido.Nombre} - {elegido.Precio:C}");
+    }
 }
 
 // Ejercicio 9: Buscar un producto por nombre.
-Console.Write("Pon el nombre del producto: ");
-string? busqueda = Console.ReadLine();
+static void BuscarProducto(List<Producto> carta){ 
+    Console.Write("Pon el nombre del producto: ");
+    string? busqueda = Console.ReadLine();
 
-Producto? encontrado = null;
-
-foreach(Producto producto in carta)
-{
-    if(string.Equals(producto.Nombre, busqueda, StringComparison.OrdinalIgnoreCase))
-    {
-        encontrado = producto;
-        break;
-    }
-}
-
-if(encontrado != null)
-{
-    Console.WriteLine($"Producto encontrado: {encontrado.Nombre} - {encontrado.Precio:C}");
-} else
-{
-    Console.WriteLine("No se ha encontrado el producto.");
-}
-
-// Ejercicio 10: Producto por precio.
-Console.Write("Precio maximo: ");
-if(!decimal.TryParse(Console.ReadLine(), out decimal precioMaximo))
-{
-    Console.WriteLine("Debes introducir un precio valido");
-} else
-{
-    Console.WriteLine($"Prodcutos hasta {precioMaximo:C}");
-
-    bool hayProductos = false;
+    Producto? encontrado = null;
 
     foreach(Producto producto in carta)
     {
-        if (producto.Precio <= precioMaximo)
+        if(string.Equals(producto.Nombre, busqueda, StringComparison.OrdinalIgnoreCase))
         {
-            Console.WriteLine($"{producto.Nombre} - {producto.Precio:C}");
-            hayProductos = true;
+            encontrado = producto;
+            break;
         }
     }
 
-    if(!hayProductos)
+    if(encontrado != null)
     {
-        Console.WriteLine("No hay ningun producto con ese precio o inferior.");
+        Console.WriteLine($"Producto encontrado: {encontrado.Nombre} - {encontrado.Precio:C}");
+    } else
+    {
+        Console.WriteLine("No se ha encontrado el producto.");
     }
 }
+
+
+// Ejercicio 10: Producto por precio.
+static void MostrarProductosPorPrecio(List<Producto> carta) {
+    Console.Write("Precio maximo: ");
+    if(!decimal.TryParse(Console.ReadLine(), out decimal precioMaximo))
+    {
+        Console.WriteLine("Debes introducir un precio valido");
+    } else
+    {
+        Console.WriteLine($"Prodcutos hasta {precioMaximo:C}");
+
+        bool hayProductos = false;
+
+        foreach(Producto producto in carta)
+        {
+            if (producto.Precio <= precioMaximo)
+            {
+                Console.WriteLine($"{producto.Nombre} - {producto.Precio:C}");
+                hayProductos = true;
+            }
+        }
+
+        if(!hayProductos)
+        {
+            Console.WriteLine("No hay ningun producto con ese precio o inferior.");
+        }
+    }
+}
+
 
 // Ejercicio 11: Producto mas caro.
-Producto masCaro = carta[0];
-foreach(Producto producto in carta)
-{
-    if(producto.Precio > masCaro.Precio)
+static void MostrarProductoMasCaro(List<Producto> carta) {
+    Producto masCaro = carta[0];
+    foreach(Producto producto in carta)
     {
-        masCaro = producto;
+        if(producto.Precio > masCaro.Precio)
+        {
+            masCaro = producto;
+        }
     }
+    Console.WriteLine($"El producto mas caro es: {masCaro.Nombre} - {masCaro.Precio}");
 }
-
-Console.WriteLine($"El producto mas caro es: {masCaro.Nombre} - {masCaro.Precio}");
 
 // Ejercicio 12: Extraer la visualizacion de la carta a un metodo.
 static void MostrarCarta(List<Producto> carta) {
@@ -154,3 +163,9 @@ static void MostrarCarta(List<Producto> carta) {
 }
 
 MostrarCarta(carta);
+
+// Ejercicio 13: Separar operaciones en metodos.
+ElegirProducto(carta);
+BuscarProducto(carta);
+MostrarProductosPorPrecio(carta);
+MostrarProductoMasCaro(carta);
