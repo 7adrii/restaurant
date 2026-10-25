@@ -2,8 +2,8 @@ using Models;
 
 public class Entrante : Producto
 {
-    int NumPersonasPensado {get; set;}
-    bool EsCaliente {get; set;}
+    public int NumPersonasPensado {get; set;}
+    public bool EsCaliente {get; set;}
     public Entrante(string nombre, decimal precio, int numPersonasPensado, bool esCaliente) : base(nombre, precio)
     {
         NumPersonasPensado = numPersonasPensado;
