@@ -30,6 +30,7 @@ List<Producto> carta = new List<Producto>
     new Bebida("Pacharan con hielo", 4m, true)
 };
 
+// Ejercicio 3: Carta enumerada. 
 Console.WriteLine("====CARTA====");
 
 int numeracion = 1;
@@ -40,7 +41,7 @@ foreach (Producto producto in carta)
     numeracion++;
 }
 
-
+// Ejercicio 4: Filtrado por tipo.
 Console.WriteLine("====BEBIDAS====");
 
 int numeracion2 = 1;
@@ -50,11 +51,11 @@ foreach (Producto producto in carta)
     if (producto is Bebida)
     {
         Console.WriteLine($"{numeracion2}. {producto.Nombre} - {producto.Precio:C}");
-        numeracion++;
+        numeracion2++;
     }
-    
 }
 
+// Ejercicio 5: Polimorfismo.
 Producto producto1 = new Bebida("Agua", 2m, false);
 Producto producto2 = new Postre("Flan", 4m, 300, true);
 Producto producto3 = new Entrante("Nachos", 7m, 3, false);
@@ -63,6 +64,7 @@ producto1.MostrarDetalles();
 producto2.MostrarDetalles();
 producto3.MostrarDetalles();
 
+// Ejercicio 7: Seleccionar producto.
 Console.WriteLine("=====================");
 Console.Write("¿Que producto quieres?");
 string? entrada = Console.ReadLine();
@@ -70,16 +72,23 @@ string? entrada = Console.ReadLine();
 if (!int.TryParse(entrada, out int seleccion))
 {
     Console.WriteLine("Debes introducir un numero.");
-} else
+}
+// Ejercicio 8: Validar la seleccion.
+else if (seleccion < 1 || seleccion > carta.Count)
 {
-    Producto elegido = carta[seleccion -1];
+    Console.WriteLine("Ese producto no existe.");
+}
+else
+{
+    Producto elegido = carta[seleccion - 1];
     Console.WriteLine($"Has elegido: {elegido.Nombre} - {elegido.Precio:C}");
 }
 
-Console.Write("Pon el numero del producto: ");
-string busqueda = Console.ReadLine();
+// Ejercicio 9: Buscar un producto por nombre.
+Console.Write("Pon el nombre del producto: ");
+string? busqueda = Console.ReadLine();
 
-Producto encontrado = null;
+Producto? encontrado = null;
 
 foreach(Producto producto in carta)
 {
@@ -98,6 +107,7 @@ if(encontrado != null)
     Console.WriteLine("No se ha encontrado el producto.");
 }
 
+// Ejercicio 10: Producto por precio.
 Console.Write("Precio maximo: ");
 if(!decimal.TryParse(Console.ReadLine(), out decimal precioMaximo))
 {
@@ -123,6 +133,7 @@ if(!decimal.TryParse(Console.ReadLine(), out decimal precioMaximo))
     }
 }
 
+// Ejercicio 11: Producto mas caro.
 Producto masCaro = carta[0];
 foreach(Producto producto in carta)
 {
@@ -133,3 +144,13 @@ foreach(Producto producto in carta)
 }
 
 Console.WriteLine($"El producto mas caro es: {masCaro.Nombre} - {masCaro.Precio}");
+
+// Ejercicio 12: Extraer la visualizacion de la carta a un metodo.
+static void MostrarCarta(List<Producto> carta) {
+    Console.WriteLine("---CARTA---");
+    for(int i = 0; i < carta.Count; i++) {
+        Console.WriteLine($"{i + 1}. {carta[i].Nombre} - {carta[i].Precio:C}");
+    }
+}
+
+MostrarCarta(carta);
